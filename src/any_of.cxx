@@ -36,6 +36,12 @@ int main()
     std::cout << "At least one number is even: "
               << std::any_of(values.begin(), values.end(), [](int i) { return i % 2 == 0; }) << std::endl;
 
+    std::array<bool, 0> bar{};
+    if (std::any_of(bar.begin(), bar.end(), [](bool b) { return b; }))
+        std::cout << "There is no 'true' in all (zero) elements\n";
+    if (std::any_of(bar.begin(), bar.end(), [](bool b) { return !b; }))
+        std::cout << "There is no 'false' in all (zero) elements\n";
+
     struct HasExtension {
         HasExtension(Extension e)
             : exts_{ extensions[e] }
