@@ -16,3 +16,5 @@ target_link_libraries(any_of
 	${Boost_SYSTEM_LIBRARIES}
 	${Boost_FILESYSTEM_LIBRARIES}
 )
+
+add_executable(none_of src/none_of.cxx)
