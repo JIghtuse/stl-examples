@@ -18,3 +18,4 @@ target_link_libraries(any_of
 )
 
 add_executable(none_of src/none_of.cxx)
+add_executable(for_each src/for_each.cxx)
