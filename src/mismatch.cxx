@@ -1,0 +1,66 @@
+#include <algorithm>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <string>
+
+enum class Color {
+    None,
+    Grey = 30,
+    Red,
+    Green,
+    Yellow,
+    Blue,
+    Violet,
+    LightBlue,
+};
+
+std::ostream& operator<<(std::ostream& out, const Color& c)
+{
+    out << "\33[";
+    if (c == Color::None)
+        out << "0";
+    else
+        out << "1;" << static_cast<int>(c);
+    return out << "m";
+}
+
+// Stupid 'diff'. Prints changes inline.
+int main(int argc, char* argv[])
+{
+    auto usage = [argv](std::ostream& out) {
+        out << "usage: " << argv[0] << " file1 file2\n";
+    };
+    if (argc != 3) {
+        usage(std::cerr);
+        return 1;
+    }
+
+    std::ifstream a{ argv[1] };
+    std::ifstream b{ argv[2] };
+    if (!a || !b) {
+        usage(std::cerr);
+        return 1;
+    }
+
+    for (auto lineno = 1; a || b; ++lineno) {
+        auto astr = std::string{};
+        if (a)
+            std::getline(a, astr);
+        auto bstr = std::string{};
+        if (b)
+            std::getline(b, bstr);
+
+        auto mismatch_it = std::mismatch(astr.begin(), astr.end(),
+                                         bstr.begin(), bstr.end());
+        auto aend = std::string(mismatch_it.first, astr.end());
+        auto bend = std::string(mismatch_it.second, bstr.end());
+        if (!aend.empty() || !bend.empty()) {
+            std::cout << std::setw(6) << lineno << ' '
+                      << std::string(astr.begin(), mismatch_it.first)
+                      << Color::Red << aend << Color::None
+                      << Color::Green << bend << Color::None
+                      << std::endl;
+        }
+    }
+}
