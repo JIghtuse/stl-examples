@@ -3,27 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
-
-enum class Color {
-    None,
-    Grey = 30,
-    Red,
-    Green,
-    Yellow,
-    Blue,
-    Violet,
-    LightBlue,
-};
-
-std::ostream& operator<<(std::ostream& out, const Color& c)
-{
-    out << "\33[";
-    if (c == Color::None)
-        out << "0";
-    else
-        out << "1;" << static_cast<int>(c);
-    return out << "m";
-}
+#include "color.h"
 
 // Stupid 'diff'. Prints changes inline.
 int main(int argc, char* argv[])
