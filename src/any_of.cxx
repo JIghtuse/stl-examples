@@ -6,19 +6,6 @@
 
 namespace fs = boost::filesystem;
 
-// http://stackoverflow.com/a/19453043/1145239
-struct recursive_directory_range {
-    typedef fs::recursive_directory_iterator iterator;
-    recursive_directory_range(fs::path p)
-        : p_(p)
-    {
-    }
-
-    iterator begin() { return fs::recursive_directory_iterator{ p_ }; }
-    iterator end() { return fs::recursive_directory_iterator{}; }
-    fs::path p_;
-};
-
 enum class Extension {
     C,
     CXX,
@@ -50,19 +37,16 @@ int main()
         }
         bool operator()(const fs::path& p)
         {
-            auto file_ext = p.extension().string();
-            return std::any_of(exts_.begin(), exts_.end(), [file_ext](auto& ext) {
-                return file_ext == ext;
+            return std::any_of(exts_.begin(), exts_.end(), [p](auto& ext) {
+                return fs::is_regular_file(p) && p.extension().string() == ext;
             });
         }
         std::vector<std::string> exts_;
     };
-    auto search_path = fs::path(".");
-    auto it = recursive_directory_range{ search_path };
-    if (std::any_of(it.begin(), it.end(), [&extensions](auto& path) {
-            auto p = fs::path{ path };
-            return fs::is_regular_file(p) && HasExtension{ extensions, Extension::CXX }(p);
-        })) {
+    auto is_cxx_file = HasExtension{ extensions, Extension::CXX };
+    if (std::any_of(fs::recursive_directory_iterator{ fs::path(".") },
+                    fs::recursive_directory_iterator{},
+                    is_cxx_file)) {
         std::cout << "Current directory or its subdirectories contains C++ source code files\n";
     }
     else {
