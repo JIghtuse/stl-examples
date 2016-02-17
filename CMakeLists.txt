@@ -5,7 +5,16 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Weffc++")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshadow -Wpedantic -Werror")
 if (CMAKE_COMPILER_IS_GNUCXX)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wlogical-op")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wlogical-op")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 5.5.0)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wduplicated-cond")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnull-dereference")
+    endif()
+else ()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-c++98-compat")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-prototypes")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-c++98-compat-pedantic")
 endif()
 
 find_package(Boost 1.58 COMPONENTS system filesystem REQUIRED)
@@ -13,10 +22,9 @@ find_package(Boost 1.58 COMPONENTS system filesystem REQUIRED)
 add_executable(all_of src/all_of.cxx)
 add_executable(any_of src/any_of.cxx)
 target_link_libraries(any_of
-	${Boost_SYSTEM_LIBRARIES}
-	${Boost_FILESYSTEM_LIBRARIES}
+    ${Boost_SYSTEM_LIBRARIES}
+    ${Boost_FILESYSTEM_LIBRARIES}
 )
-
 add_executable(none_of src/none_of.cxx)
 add_executable(for_each src/for_each.cxx)
 add_executable(count src/count.cxx)
