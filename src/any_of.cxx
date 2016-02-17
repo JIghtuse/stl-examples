@@ -25,10 +25,6 @@ enum class Extension {
 };
 
 using ExtensionDict = std::map<Extension, std::vector<std::string> >;
-ExtensionDict extensions{
-    { Extension::C, { ".c" } },
-    { Extension::CXX, { ".cxx", ".cc", ".cpp" } },
-};
 
 int main()
 {
@@ -42,9 +38,14 @@ int main()
     if (std::any_of(bar.begin(), bar.end(), [](bool b) { return !b; }))
         std::cout << "There is no 'false' in all (zero) elements\n";
 
+    ExtensionDict extensions{
+        { Extension::C, { ".c" } },
+        { Extension::CXX, { ".cxx", ".cc", ".cpp" } },
+    };
+
     struct HasExtension {
-        HasExtension(Extension e)
-            : exts_{ extensions[e] }
+        HasExtension(const ExtensionDict& exts, Extension e)
+            : exts_{ exts.at(e) }
         {
         }
         bool operator()(const fs::path& p)
@@ -58,9 +59,9 @@ int main()
     };
     auto search_path = fs::path(".");
     auto it = recursive_directory_range{ search_path };
-    if (std::any_of(it.begin(), it.end(), [](auto& path) {
+    if (std::any_of(it.begin(), it.end(), [&extensions](auto& path) {
             auto p = fs::path{ path };
-            return fs::is_regular_file(p) && HasExtension{ Extension::CXX }(p);
+            return fs::is_regular_file(p) && HasExtension{ extensions, Extension::CXX }(p);
         })) {
         std::cout << "Current directory or its subdirectories contains C++ source code files\n";
     }
