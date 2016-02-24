@@ -14,7 +14,7 @@ struct Line {
         : data{}
     {
     }
-    Line(const std::string& s)
+    explicit Line(const std::string& s)
         : data{ s }
     {
     }
