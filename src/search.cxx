@@ -4,16 +4,18 @@
 #include <string>
 #include <vector>
 
+// TODO: more appropriate example. Now it more fits for std::search_n
+
 using TestHistory = std::vector<bool>;
 using TestResults = std::map<std::string, TestHistory>;
 
-bool has_n_failing_tests(TestHistory history, size_t n)
+bool has_n_failing_tests(const TestHistory& history, size_t n)
 {
     TestHistory n_failing(n, false);
     return std::search(history.begin(), history.end(), n_failing.begin(), n_failing.end()) != history.end();
 }
 
-bool n_last_tests_failed(TestHistory history, size_t n)
+bool n_last_tests_failed(const TestHistory& history, size_t n)
 {
     TestHistory n_failing(n, false);
     auto it = std::search(history.begin(), history.end(), n_failing.begin(), n_failing.end());
