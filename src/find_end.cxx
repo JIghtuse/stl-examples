@@ -8,6 +8,7 @@
 #include <experimental/optional>
 
 using std::experimental::optional;
+using std::experimental::nullopt;
 
 struct Line {
     Line()
@@ -43,10 +44,9 @@ std::ostream& operator<<(std::ostream& out, const Line& line)
 
 optional<Log> read_log(const char* fname)
 {
-    auto result = optional<Log>{};
     std::ifstream in{ fname };
     if (!in)
-        return result;
+        return nullopt;
 
     Log log;
     std::copy(std::istream_iterator<Line>{ in },

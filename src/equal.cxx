@@ -6,6 +6,7 @@
 #include <experimental/string_view>
 
 using std::experimental::optional;
+using std::experimental::nullopt;
 using std::experimental::string_view;
 
 struct Header {
@@ -19,14 +20,13 @@ std::istream& operator>>(std::istream& in, Header& header)
 
 optional<Header> read_header(const char* fname)
 {
-    auto result = optional<Header>{};
     std::ifstream binary(fname, std::ios::binary);
     if (binary) {
         Header header;
         if (binary >> header)
-            result = header;
+            return header;
     }
-    return result;
+    return nullopt;
 }
 
 const char kElfMagic[4]{ 0x7f, 'E', 'L', 'F' };

@@ -8,12 +8,13 @@
 #include <string>
 
 using std::experimental::optional;
+using std::experimental::nullopt;
 
 struct config {
     optional<int> version;
     std::map<std::string, optional<std::string> > parameters{
-        { "os", optional<std::string>{} },
-        { "arch", optional<std::string>{} },
+        { "os", nullopt },
+        { "arch", nullopt },
     };
 };
 
@@ -22,7 +23,7 @@ optional<std::string> get_os()
     std::regex pretty_name{ "PRETTY_NAME=\"(.*)\"" };
     std::ifstream os_release{ "/etc/os-release" };
     if (!os_release)
-        return optional<std::string>{};
+        return nullopt;
     for (std::string line; std::getline(os_release, line);) {
         std::smatch sm;
         std::regex_match(line, sm, pretty_name);
@@ -30,7 +31,7 @@ optional<std::string> get_os()
             return std::string{ sm[1] };
     }
 
-    return optional<std::string>{};
+    return nullopt;
 }
 
 optional<std::string> get_arch()
