@@ -22,11 +22,11 @@ void print_container_if(const Container& c, std::ostream& out, const char* delim
 
 int main()
 {
-    std::array<int, 10> fib_sequence{ 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 };
+    std::array<int, 10> fib_sequence{ { 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 } };
     print_container(fib_sequence);
     print_container_if(fib_sequence, std::cout, " ", [](int i) { return i < 42; });
 
-    std::array<char, 5> hello{ 'h', 'e', 'l', 'l', 'o' };
+    std::array<char, 5> hello{ { 'h', 'e', 'l', 'l', 'o' } };
     print_container(hello, std::cout, "");
 
     auto hello_world = std::string{ "Hello, world!" };
