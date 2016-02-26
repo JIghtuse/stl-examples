@@ -9,7 +9,6 @@ int main()
     const auto diff = 3;
 
     v.resize(n + diff);
-    std::vector<int> v2(n + diff);
 
     auto print = [](const auto& c){
         for (auto i : c) {
