@@ -11,7 +11,7 @@ struct FibGenerator {
     }
     size_t operator()()
     {
-        std::tie(a, b) = std::pair<size_t, size_t>(b + a, a);
+        std::tie(a, b) = std::make_pair(b + a, a);
         return b;
     }
 
