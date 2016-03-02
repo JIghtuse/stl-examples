@@ -1,5 +1,10 @@
 #include <catch/catch.hpp>
 #include <generate_n.h>
+#include <experimental/optional>
+#include <vector>
+
+using std::experimental::nullopt;
+using std::experimental::optional;
 
 TEST_CASE( "Extracts n lines from istream if there are enough", "[get_n_lines]" ) {
     std::istringstream iss{R"(a
@@ -55,4 +60,29 @@ c)"};
     REQUIRE(2 == two.size());
     REQUIRE("a" == two[0]);
     REQUIRE("c" == two[1]);
+}
+
+TEST_CASE( "Returns nullopt if there are no enough results", "[get_page]" ) {
+    REQUIRE(nullopt == get_page({}, 0, 1));
+    REQUIRE(nullopt == get_page({}, 1, 1));
+    REQUIRE(nullopt == get_page(Results(2), 2, 1));
+    REQUIRE(nullopt == get_page(Results(2), 1, 2));
+    REQUIRE(nullopt == get_page(Results(2), 1, 5));
+    REQUIRE(nullopt == get_page(Results(2), 5, 1));
+}
+
+TEST_CASE( "Returns page if there are enough values", "[get_page]" ) {
+    auto pages = get_page(Results(2), 1, 1);
+    REQUIRE(nullopt != pages);
+    REQUIRE(1 == pages->size());
+
+    // first and last page with 4 results
+    auto pages_all = get_page(Results(4), 4, 0);
+    REQUIRE(nullopt != pages_all);
+    REQUIRE(4 == pages_all->size());
+
+    // last (4) page with one result
+    auto pages_remaining = get_page(Results(10), 3, 3);
+    REQUIRE(nullopt != pages_remaining);
+    REQUIRE(1 == pages_remaining->size());
 }
