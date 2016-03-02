@@ -17,6 +17,7 @@ else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-c++98-compat-pedantic")
 endif()
 
+include_directories(include/)
 find_package(Boost 1.58 COMPONENTS system filesystem REQUIRED)
 
 add_executable(all_of src/all_of.cxx)
@@ -46,3 +47,19 @@ add_executable(fill src/fill.cxx)
 add_executable(fill_n src/fill_n.cxx)
 add_executable(transform src/transform.cxx)
 add_executable(generate src/generate.cxx)
+add_executable(generate_n include/generate_n.h src/generate_n.cxx src/generate_n_main.cxx)
+
+# Testing - it should be under some 'ifdef'
+enable_testing()
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+add_executable(all_tests
+    tests/tests_main.cxx
+    include/generate_n.h
+    src/generate_n.cxx
+    tests/test_generate_n.cxx
+)
+target_link_libraries(all_tests ${GTEST_BOTH_LIBRARIES})
+
+GTEST_ADD_TESTS(all_tests "" AUTO)
