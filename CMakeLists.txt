@@ -48,6 +48,7 @@ add_executable(fill_n include/print_container.h src/fill_n.cxx)
 add_executable(transform include/print_container.h src/transform.cxx)
 add_executable(generate src/generate.cxx)
 add_executable(generate_n include/generate_n.h src/generate_n.cxx src/generate_n_main.cxx)
+add_executable(remove src/remove.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
