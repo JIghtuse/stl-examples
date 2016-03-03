@@ -38,7 +38,6 @@ int main()
     auto vowels = std::string{};
     std::copy_if(hello_world.begin(), hello_world.end(),
                  std::back_inserter(vowels), is_vowel);
-    std::cout << "Vowels of \"" << hello_world << "\":     ";
     print_container(vowels, "vowels of 'Hello, world': ");
 
     auto non_vowels = std::string{};
