@@ -5,17 +5,6 @@
 // Part of the example lives in this header
 #include <print_container.h>
 
-template <typename Container, typename Predicate>
-void print_container_if(const Container& c, Predicate p,
-                        const char* header="", const char* delim = " ",
-                        std::ostream& out = std::cout)
-{
-    out << header;
-    using ValueType = typename Container::value_type;
-    std::copy_if(c.begin(), c.end(), std::ostream_iterator<ValueType>(out, delim), p);
-    out << std::endl;
-}
-
 int main()
 {
     std::array<int, 10> fib_sequence{ { 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 } };

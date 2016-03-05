@@ -13,3 +13,24 @@ void print_container(const Container& c,
     out << std::endl;
 }
 
+template <typename Container, typename Predicate>
+void print_container_if(const Container& c, Predicate p,
+                        const char* header="", const char* delim = " ",
+                        std::ostream& out = std::cout)
+{
+    out << header;
+    using ValueType = typename Container::value_type;
+    std::copy_if(c.begin(), c.end(), std::ostream_iterator<ValueType>(out, delim), p);
+    out << std::endl;
+}
+
+template <typename Container, typename Predicate>
+void print_container_if_not(const Container& c, Predicate p,
+                        const char* header="", const char* delim = " ",
+                        std::ostream& out = std::cout)
+{
+    out << header;
+    using ValueType = typename Container::value_type;
+    std::remove_copy_if(c.begin(), c.end(), std::ostream_iterator<ValueType>(out, delim), p);
+    out << std::endl;
+}
