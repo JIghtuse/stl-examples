@@ -54,8 +54,6 @@ add_executable(remove_copy src/remove_copy.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
 
 add_executable(all_tests
     tests/tests_main.cxx
@@ -63,6 +61,4 @@ add_executable(all_tests
     src/generate_n.cxx
     tests/test_generate_n.cxx
 )
-target_link_libraries(all_tests ${GTEST_BOTH_LIBRARIES})
-
-GTEST_ADD_TESTS(all_tests "" AUTO)
+add_test(All all_tests)
