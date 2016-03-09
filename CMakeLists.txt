@@ -51,6 +51,7 @@ add_executable(generate_n include/generate_n.h src/generate_n.cxx src/generate_n
 add_executable(remove src/remove.cxx)
 add_executable(remove_if src/remove_if.cxx)
 add_executable(remove_copy src/remove_copy.cxx)
+add_executable(replace src/replace.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
