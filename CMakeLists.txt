@@ -54,6 +54,7 @@ add_executable(remove_copy src/remove_copy.cxx)
 add_executable(replace src/replace.cxx)
 add_executable(replace_if src/replace_if.cxx)
 add_executable(replace_copy src/replace_copy.cxx)
+add_executable(replace_copy_if src/replace_copy_if.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
