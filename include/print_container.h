@@ -1,5 +1,7 @@
 #pragma once
 
+#include <algorithm>
+#include <iostream>
 #include <iterator>
 
 template <typename Container>
