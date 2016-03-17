@@ -56,6 +56,7 @@ add_executable(replace_if src/replace_if.cxx)
 add_executable(replace_copy src/replace_copy.cxx)
 add_executable(replace_copy_if src/replace_copy_if.cxx)
 add_executable(iter_swap src/iter_swap.cxx)
+add_executable(rotate src/rotate.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
