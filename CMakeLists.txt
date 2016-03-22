@@ -60,6 +60,7 @@ add_executable(rotate src/rotate.cxx)
 add_executable(swap src/swap.cxx)
 add_executable(unique src/unique.cxx)
 add_executable(reverse src/reverse.cxx)
+add_executable(shuffle src/shuffle.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
