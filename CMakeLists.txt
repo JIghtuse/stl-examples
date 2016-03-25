@@ -62,6 +62,7 @@ add_executable(unique src/unique.cxx)
 add_executable(reverse src/reverse.cxx)
 add_executable(shuffle src/shuffle.cxx)
 add_executable(max src/max.cxx)
+add_executable(iota src/iota.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
