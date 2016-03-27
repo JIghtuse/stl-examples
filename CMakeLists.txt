@@ -65,6 +65,9 @@ add_executable(max src/max.cxx)
 add_executable(iota src/iota.cxx)
 add_executable(sample src/sample.cxx)
 add_executable(accumulate src/accumulate.cxx)
+if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 5.5.0)
+    add_executable(ostream_joiner src/ostream_joiner.cxx)
+endif()
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
