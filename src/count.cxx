@@ -13,11 +13,11 @@ int main()
     };
 
     std::cout << "Number of nan values: "
-              << std::count_if(values.begin(), values.end(), isnan)
+              << std::count_if(values.begin(), values.end(), [](const double& d) { return std::isnan(d); })
               << std::endl;
 
     std::cout << "Number of infinite values: "
-              << std::count_if(values.begin(), values.end(), isinf)
+              << std::count_if(values.begin(), values.end(), [](const double& d) { return std::isinf(d); })
               << std::endl;
 
 
