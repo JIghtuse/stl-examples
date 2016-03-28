@@ -68,6 +68,7 @@ add_executable(accumulate src/accumulate.cxx)
 if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 5.5.0)
     add_executable(ostream_joiner src/ostream_joiner.cxx)
 endif()
+add_executable(partial_sum src/partial_sum.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
