@@ -70,6 +70,7 @@ if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 5.5.
 endif()
 add_executable(partial_sum src/partial_sum.cxx)
 add_executable(is_sorted src/is_sorted.cxx)
+add_executable(clamp src/clamp.cxx)
 
 # Testing - it should be under some 'ifdef'
 enable_testing()
