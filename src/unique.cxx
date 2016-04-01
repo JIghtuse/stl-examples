@@ -46,8 +46,8 @@ optional<std::vector<Link>> get_links(const std::string& fname, const std::strin
 
     // Remove repeating links
     std::sort(links.begin(), links.end());
-    auto end = std::unique(links.begin(), links.end());
-    links.resize(std::distance(links.begin(), end));
+    auto new_end = std::unique(links.begin(), links.end());
+    links.erase(new_end, links.end());
 
     return links;
 }
