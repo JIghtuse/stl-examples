@@ -18,7 +18,7 @@ void plot(const Function& data, unsigned width, const std::string& title)
     std::cout << "  +" << std::string(width, '-') << '\n';
 
     const auto max = *std::max_element(data.begin(), data.end());
-    const auto scaling_factor = width / (double)max;
+    const auto scaling_factor = width / static_cast<double>(max);
 
     for (auto i = 0u; i < data.size(); ++i) {
         std::cout << std::fixed << std::setprecision(1) << std::setw(2)

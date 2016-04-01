@@ -9,7 +9,7 @@ int main()
     std::array<double, 10> values{
         { 0.0, 1.0, 2.0, 3.0, 4.0, 5.0,
             -1.0 / 0.0, 1.0 / 0.0,
-            std::sqrt(-1), NAN },
+            std::sqrt(-1), double(NAN) },
     };
 
     std::cout << "Number of nan values: "

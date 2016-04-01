@@ -41,6 +41,7 @@ std::ostream& operator<<(std::ostream& out, const Direction& d)
     case Direction::East:
         return out << "East";
     }
+    return out;
 }
 
 struct Hero {
