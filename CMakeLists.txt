@@ -14,9 +14,8 @@ else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-c++98-compat")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-prototypes")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-global-constructors")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-float-conversion")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-exit-time-destructors")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-c++98-compat-pedantic")
 endif()
 
@@ -75,13 +74,14 @@ add_executable(partial_sum src/partial_sum.cxx)
 add_executable(is_sorted src/is_sorted.cxx)
 add_executable(clamp src/clamp.cxx)
 
-# Testing - it should be under some 'ifdef'
-enable_testing()
+if (BUILD_TESTS)
+    enable_testing()
 
-add_executable(all_tests
-    tests/tests_main.cxx
-    include/generate_n.h
-    src/generate_n.cxx
-    tests/test_generate_n.cxx
-)
-add_test(All all_tests)
+    add_executable(all_tests
+        tests/tests_main.cxx
+        include/generate_n.h
+        src/generate_n.cxx
+        tests/test_generate_n.cxx
+    )
+    add_test(All all_tests)
+endif()
