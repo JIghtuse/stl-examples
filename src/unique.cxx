@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <experimental/optional>
+#include <experimental/string_view>
 #include <fstream>
 #include <regex>
 #include <string>
@@ -7,10 +8,18 @@
 
 using std::experimental::nullopt;
 using std::experimental::optional;
+using std::experimental::string_view;
 
 using Link = std::string;
 
-const std::string kHTTPPrefix{"http://"};
+namespace {
+    const char kHTTPPrefix[] = "http://";
+} // namespace
+
+inline bool starts_with(string_view s, string_view prefix)
+{
+    return std::equal(std::begin(prefix), std::end(prefix), s.begin());
+}
 
 optional<std::vector<Link>> get_links(const std::string& fname, const std::string& hostname)
 {
@@ -28,7 +37,7 @@ optional<std::vector<Link>> get_links(const std::string& fname, const std::strin
         for (auto it = begin; it != std::sregex_iterator{}; ++it) {
             std::smatch match = *it;
             auto link = std::string{match[1]};
-            if (!std::equal(kHTTPPrefix.begin(), kHTTPPrefix.end(), link.begin())) {
+            if (!starts_with(link, {kHTTPPrefix, sizeof(kHTTPPrefix)})) {
                 link = kHTTPPrefix + hostname + link;
             }
             links.push_back(link);
