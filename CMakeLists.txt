@@ -75,6 +75,7 @@ add_executable(is_sorted src/is_sorted.cxx)
 add_executable(clamp src/clamp.cxx)
 add_executable(inner_product src/inner_product.cxx)
 add_executable(set_difference src/set_difference.cxx)
+add_executable(set_intersection src/set_intersection.cxx)
 
 if (BUILD_TESTS)
     enable_testing()
