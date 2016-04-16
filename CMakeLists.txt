@@ -77,6 +77,7 @@ add_executable(inner_product src/inner_product.cxx)
 add_executable(set_difference src/set_difference.cxx)
 add_executable(set_intersection src/set_intersection.cxx)
 add_executable(adjacent_difference src/adjacent_difference.cxx)
+add_executable(nth_element src/nth_element.cxx)
 
 if (BUILD_TESTS)
     enable_testing()
