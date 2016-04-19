@@ -79,6 +79,7 @@ add_executable(set_intersection src/set_intersection.cxx)
 add_executable(adjacent_difference src/adjacent_difference.cxx)
 add_executable(nth_element src/nth_element.cxx)
 add_executable(includes src/includes.cxx)
+add_executable(partial_sort src/partial_sort.cxx)
 
 if (BUILD_TESTS)
     enable_testing()
