@@ -22,7 +22,7 @@ else ()
 endif()
 
 include_directories(include/)
-find_package(Boost 1.55 COMPONENTS system filesystem REQUIRED)
+find_package(Boost 1.55 COMPONENTS date_time system filesystem REQUIRED)
 
 add_executable(all_of src/all_of.cxx)
 add_executable(any_of src/any_of.cxx)
@@ -83,6 +83,7 @@ add_executable(nth_element src/nth_element.cxx)
 add_executable(includes src/includes.cxx)
 add_executable(partial_sort src/partial_sort.cxx)
 add_executable(next_permutation src/next_permutation.cxx)
+add_executable(binary_search src/binary_search.cxx)
 
 if (BUILD_TESTS)
     enable_testing()
