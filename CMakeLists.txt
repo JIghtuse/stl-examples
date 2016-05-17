@@ -84,6 +84,7 @@ add_executable(includes src/includes.cxx)
 add_executable(partial_sort src/partial_sort.cxx)
 add_executable(next_permutation src/next_permutation.cxx)
 add_executable(binary_search src/binary_search.cxx)
+add_executable(merge src/merge.cxx)
 
 if (BUILD_TESTS)
     enable_testing()
