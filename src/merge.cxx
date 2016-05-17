@@ -63,4 +63,20 @@ int main()
     print_sort_print(v_even);
     auto v_odd = std::vector<int>{3, 2, 5, 1, 4};
     print_sort_print(v_odd);
+
+    // is it stable?
+    auto pairs = std::vector<std::pair<int, char>>{
+        { 2, 'a' },
+        { 2, 'b' },
+        { 1, 'a' },
+    };
+    std::cout << "before sorting:\n";
+    for (auto pair : pairs) {
+        std::cout << pair.first << " " << pair.second << std::endl;
+    }
+    merge_sort(pairs, [](auto a, auto b) { return a.first < b.first; });
+    std::cout << "after sorting: \n";
+    for (auto pair : pairs) {
+        std::cout << pair.first << " " << pair.second << std::endl;
+    }
 }
