@@ -1,14 +1,25 @@
 #include <print_container.h>
+#include <cassert>
 #include <algorithm>
 #include <vector>
 
-template <typename Container>
-void insertion_sort(Container& c)
+template <typename ForwardIt,
+          typename Compare>
+void insertion_sort(ForwardIt begin, ForwardIt end, Compare comp)
 {
-    for (auto it = c.begin(); it != c.end(); ++it) {
-        auto first_larger_it = std::upper_bound(c.begin(), it, *it);
+    for (auto it = begin; it != end; ++it) {
+        auto first_larger_it = std::upper_bound(begin, it, *it, comp);
         std::rotate(first_larger_it, it, it + 1);
     }
+}
+
+template <typename Container,
+          typename Value=typename Container::value_type,
+          typename Compare=std::less<Value>>
+void insertion_sort(Container& container, Compare comp=Compare{})
+{
+    insertion_sort(container.begin(), container.end(), comp);
+    assert(std::is_sorted(container.begin(), container.end(), comp));
 }
 
 int main()
