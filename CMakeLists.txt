@@ -22,7 +22,7 @@ else ()
 endif()
 
 include_directories(include/)
-find_package(Boost 1.55 COMPONENTS date_time system filesystem REQUIRED)
+find_package(Boost 1.55 COMPONENTS system filesystem REQUIRED)
 
 add_executable(all_of src/all_of.cxx)
 add_executable(any_of src/any_of.cxx)
