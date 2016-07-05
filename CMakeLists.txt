@@ -26,10 +26,7 @@ find_package(Boost 1.55 COMPONENTS system filesystem REQUIRED)
 
 add_executable(all_of src/all_of.cxx)
 add_executable(any_of src/any_of.cxx)
-target_link_libraries(any_of
-    ${Boost_SYSTEM_LIBRARIES}
-    ${Boost_FILESYSTEM_LIBRARIES}
-)
+target_link_libraries(any_of stdc++fs)
 add_executable(none_of src/none_of.cxx)
 add_executable(for_each src/for_each.cxx)
 add_executable(count src/count.cxx)

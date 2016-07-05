@@ -2,9 +2,9 @@
 #include <array>
 #include <iostream>
 #include <map>
-#include <boost/filesystem.hpp>
+#include <experimental/filesystem>
 
-namespace fs = boost::filesystem;
+namespace fs = std::experimental::filesystem;
 
 enum class Extension {
     C,
