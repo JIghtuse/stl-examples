@@ -2,6 +2,7 @@
 #include <array>
 #include <iostream>
 #include <tuple>
+#include <print_container.h>
 
 struct FibGenerator {
     FibGenerator()
@@ -24,9 +25,6 @@ int main(void)
 {
     auto values = std::array<size_t, 30>();
     std::generate(values.begin(), values.end(), FibGenerator{});
-
-    std::cout << "values: ";
-    for (auto e : values)
-        std::cout << e << ' ';
-    std::cout << std::endl;
+    
+    print_container(values, "values: ");
 }
