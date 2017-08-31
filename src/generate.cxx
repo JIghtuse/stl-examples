@@ -27,4 +27,12 @@ int main(void)
     std::generate(values.begin(), values.end(), FibGenerator{});
     
     print_container(values, "values: ");
+
+    constexpr auto countdownFrom = 10;
+    auto countdown = std::array<int, countdownFrom + 1>();
+    std::generate(countdown.begin(), countdown.end(), [x = countdownFrom + 1]() mutable {
+        return --x;
+    });
+
+    print_container(countdown, "countdown: ");
 }
