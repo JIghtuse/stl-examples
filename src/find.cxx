@@ -8,8 +8,7 @@
 std::vector<std::string> extract_servers(int argc, char* argv[])
 {
     std::vector<std::string> servers;
-    for (auto i = 1; i < argc; ++i)
-        servers.push_back(argv[i]);
+    servers.assign(argv + 1, argv + argc);
     return servers;
 }
 

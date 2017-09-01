@@ -1,3 +1,4 @@
+#include <print_container.h>
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -6,10 +7,7 @@ int main()
 {
     std::array<int, 6> values{ { 3, 4, 2, 1, -1, 0 } };
 
-    std::cout << "Array values: ";
-    for (auto i : values)
-        std::cout << i << " ";
-    std::cout << std::endl;
+    print_container(values, "Array values: ");
 
     auto positive = [](auto i) { return i > 0; };
 

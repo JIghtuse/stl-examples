@@ -1,3 +1,4 @@
+#include <print_container.h>
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -10,36 +11,24 @@ int main()
 
     v.resize(n + diff);
 
-    auto print = [](const auto& c){
-        for (auto i : c) {
-            std::cout << i << ' ';
-        }
-        std::cout << std::endl;
-    };
-
     std::cout << "initially\n";
-    std::cout << "v: ";
-    print(v);
+    print_container(v, "v: ");
 
     // Shift all elements to the right
     std::copy_backward(v.begin(), v.end() - diff, v.end());
     std::cout << "after std::copy_backward\n";
-    std::cout << "v: ";
-    print(v);
+    print_container(v, "v: ");
 
     std::fill_n(v.begin(), diff, 0);
     std::cout << "after std::fill_n\n";
-    std::cout << "v: ";
-    print(v);
+    print_container(v, "v: ");
 
     // Shift all elements back to the left
     std::copy(v.begin() + diff, v.end(), v.begin());
     std::cout << "after std::copy\n";
-    std::cout << "v: ";
-    print(v);
+    print_container(v, "v: ");
 
     std::fill_n(v.end() - diff, diff, 0);
     std::cout << "after std::fill_n\n";
-    std::cout << "v: ";
-    print(v);
+    print_container(v, "v: ");
 }

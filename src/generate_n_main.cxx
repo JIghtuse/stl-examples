@@ -1,3 +1,4 @@
+#include <print_container.h>
 #include <generate_n.h>
 #include <fstream>
 #include <iostream>
@@ -15,7 +16,5 @@ int main(int argc, char* argv[])
     std::ifstream in{ argv[1] };
     auto lines = get_n_lines(in, nlines);
 
-    for (const auto& line : lines) {
-        std::cout << line << std::endl;
-    }
+    print_container(lines, "", "\n");
 }

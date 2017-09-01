@@ -1,3 +1,4 @@
+#include <print_container.h>
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -12,10 +13,7 @@ int main()
 
     auto lst = { 1, 5, 3, 2, 4 };
 
-    std::cout << "max of ";
-    for (auto i : lst) {
-        std::cout << i << ' ';
-    }
+    print_container(lst, "max of ");
     std::cout << ": " << std::max(lst) << std::endl;
 
     constexpr auto x_size{3};
@@ -40,9 +38,6 @@ int main()
     };
 
     auto int_list = { 111, 123, 900, 555, 324 };
-    std::cout << "max (by sum of digits) of ";
-    for (auto i : int_list) {
-        std::cout << i << ' ';
-    }
+    print_container(int_list, "max (by sum of digits) of ");
     std::cout << ": " << std::max(int_list, digits_sum_larger) << std::endl;
 }

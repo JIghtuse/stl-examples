@@ -1,3 +1,4 @@
+#include <print_container.h>
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -70,13 +71,7 @@ int main()
         { Processor{ 2400.0, 4 }, RAM{ 2.0 } },
     };
 
-    auto print_computers = [&computers](const std::string& header) {
-        std::cout << header << std::endl;
-        for (const auto& computer : computers)
-            std::cout << computer << std::endl;
-    };
-
-    print_computers("initially: ");
+    print_container(computers, "initially: ", "\n");
 
     auto unacceptable = [](const Computer& computer) {
         return computer.processor.ncores < 4
@@ -86,5 +81,5 @@ int main()
     computers.erase(std::remove_if(computers.begin(), computers.end(), unacceptable),
                     computers.end());
 
-    print_computers("after remove_if: ");
+    print_container(computers, "after remove_if: ", "\n");
 }

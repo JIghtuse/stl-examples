@@ -1,10 +1,11 @@
+#include <print_container.h>
 #include <algorithm>
 #include <iostream>
 #include <vector>
 
 class Moveable {
 public:
-    Moveable(int i_)
+    explicit Moveable(int i_)
         : i{ i_ }
     {
     }
@@ -26,6 +27,11 @@ private:
     int i;
 };
 
+std::ostream& operator<<(std::ostream& out, const Moveable& m)
+{
+    return out << m.value();
+}
+
 int main()
 {
     const auto n = 7;
@@ -38,26 +44,16 @@ int main()
 
     std::vector<int> v2(n + diff);
 
-    auto print = [](const auto& c) {
-        for (auto& i : c) {
-            std::cout << i.value() << ' ';
-        }
-        std::cout << std::endl;
-    };
-
     std::cout << "initially\n";
-    std::cout << "v: ";
-    print(v);
+    print_container(v, "v: ");
 
     // Shift all elements to the right
     std::move_backward(v.begin(), v.end() - diff, v.end());
     std::cout << "after std::move_backward\n";
-    std::cout << "v: ";
-    print(v);
+    print_container(v, "v: ");
 
     // Shift all elements back to the left
     std::move(v.begin() + diff, v.end(), v.begin());
     std::cout << "after std::move\n";
-    std::cout << "v: ";
-    print(v);
+    print_container(v, "v: ");
 }

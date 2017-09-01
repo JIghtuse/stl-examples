@@ -1,3 +1,4 @@
+#include <print_container.h>
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -22,9 +23,7 @@ void print_file(const std::string& fname, bool reversed)
         std::reverse(lines.begin(), lines.end());
     }
 
-    for (const auto& line : lines) {
-        std::cout << line << '\n';
-    }
+    print_container(lines, "", "\n");
 }
 
 // "cat"-like utility
