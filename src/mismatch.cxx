@@ -31,13 +31,13 @@ int main(int argc, char* argv[])
         if (b)
             std::getline(b, bstr);
 
-        auto mismatch_it = std::mismatch(astr.begin(), astr.end(),
+        auto [astart, bstart] = std::mismatch(astr.begin(), astr.end(),
                                          bstr.begin(), bstr.end());
-        auto aend = std::string(mismatch_it.first, astr.end());
-        auto bend = std::string(mismatch_it.second, bstr.end());
+        auto aend = std::string(astart, astr.end());
+        auto bend = std::string(bstart, bstr.end());
         if (!aend.empty() || !bend.empty()) {
             std::cout << std::setw(6) << lineno << ' '
-                      << std::string(astr.begin(), mismatch_it.first)
+                      << std::string(astr.begin(), astart)
                       << Color::Red << aend << Color::None
                       << Color::Green << bend << Color::None
                       << std::endl;

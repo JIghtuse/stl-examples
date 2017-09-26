@@ -16,15 +16,15 @@ int main()
     std::copy(v.begin(), v.end(), make_ostream_joiner(std::cout, ", "));
     std::cout << " }\n";
 
-    auto ingredients{ std::map<std::string, Ingredients>{
+    auto recipe_ingredients{ std::map<std::string, Ingredients>{
         { "Greek salad", { "tomatoes", "cucumbers", "onion", "feta cheese", "olives", "oregano", "olive oil" } },
         { "Blueberry pie", { "blueberries", "flour", "cinnamon", "sugar", "butter" } }
     } };
 
     std::cout << "Ingredients for some recipes:\n";
-    for (const auto& recipe : ingredients) {
-        std::cout << recipe.first << ": ";
-        std::copy(recipe.second.begin(), recipe.second.end(), make_ostream_joiner(std::cout, ", "));
+    for (const auto& [name, ingredients] : recipe_ingredients) {
+        std::cout << name << ": ";
+        std::copy(begin(ingredients), end(ingredients), make_ostream_joiner(std::cout, ", "));
         std::cout << std::endl;
     }
 }

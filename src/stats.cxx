@@ -26,16 +26,16 @@ double standard_deviation(const std::vector<int>& data, double mean_value)
 
 int main()
 {
-    auto numbers = std::vector<int>{
+    const auto numbers = std::vector<int>{
          1,  2,  3,  4,  5,  6,  7,  8,  9,
         -1, -2, -3, -4, -5, -6, -7, -8, -9,
          0
     };
     print_container(numbers, "v: ");
 
-    auto minmax = std::minmax_element(numbers.begin(), numbers.end());
-    std::cout << "minimum element:    " << *minmax.first << std::endl;
-    std::cout << "maximum element:    " << *minmax.second << std::endl;
+    const auto [min, max] = std::minmax_element(cbegin(numbers), cend(numbers));
+    std::cout << "minimum element:    " << *min << std::endl;
+    std::cout << "maximum element:    " << *max << std::endl;
 
     auto mean_value = mean(numbers);
     std::cout << "mean value:         " << mean_value << std::endl;

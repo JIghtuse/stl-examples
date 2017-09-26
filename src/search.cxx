@@ -38,14 +38,14 @@ int main()
         { "test_cleanup", TestHistory{ true, true, true, true, true } },
     };
 
-    for (auto& test : test_results) {
-        if (has_n_failing_tests(test.second, 3))
-            std::cout << "Test " << test.first << " has 3 consecutive failing invocations\n";
+    for (const auto& [name, history] : test_results) {
+        if (has_n_failing_tests(history, 3))
+            std::cout << "Test " << name << " has 3 consecutive failing invocations\n";
     }
 
-    for (auto& test : test_results) {
-        if (n_last_tests_failed(test.second, 3))
-            std::cout << "Test " << test.first << " failed last 3 times\n";
+    for (const auto& [name, history] : test_results) {
+        if (n_last_tests_failed(history, 3))
+            std::cout << "Test " << name << " failed last 3 times\n";
     }
 
     const std::string quote = "There is no spoon";

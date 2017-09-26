@@ -71,12 +71,12 @@ int main()
         { 1, 'a' },
     };
     std::cout << "before sorting:\n";
-    for (auto pair : pairs) {
-        std::cout << pair.first << " " << pair.second << std::endl;
+    for (auto [n, c] : pairs) {
+        std::cout << n << " " << c << std::endl;
     }
     merge_sort(pairs, [](auto a, auto b) { return a.first < b.first; });
     std::cout << "after sorting: \n";
-    for (auto pair : pairs) {
-        std::cout << pair.first << " " << pair.second << std::endl;
+    for (auto [n, c] : pairs) {
+        std::cout << n << " " << c << std::endl;
     }
 }
