@@ -57,9 +57,7 @@ int main()
 {
     const auto input_file{std::string{"index.html"}};
 
-    auto links = get_links(input_file, "en.cppreference.com");
-
-    if (links) {
+    if (auto links = get_links(input_file, "en.cppreference.com"); links) {
         print_container(*links, "All links:\n", "\n");
     } else {
         std::cerr << "Cannot open file " << input_file << std::endl;

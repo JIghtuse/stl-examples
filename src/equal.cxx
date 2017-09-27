@@ -20,8 +20,7 @@ std::istream& operator>>(std::istream& in, Header& header)
 
 optional<Header> read_header(const char* fname)
 {
-    std::ifstream binary(fname, std::ios::binary);
-    if (binary) {
+    if (std::ifstream binary(fname, std::ios::binary); binary) {
         Header header;
         if (binary >> header)
             return header;

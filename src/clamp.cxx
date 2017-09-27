@@ -99,14 +99,11 @@ std::ostream& operator<<(std::ostream& out, const Field& f) {
 
         out << kFieldSymbol;
         for (int x = 0; x < f.width; ++x) {
-            const auto pos = Position{x, y};
-
-            if (f.hero.m_pos == pos) {
+            if (f.hero.m_pos == Position{x, y}) {
                 out << kHeroSymbol;
             } else {
                 out << kEmptySymbol;
             }
-
         }
         out << kFieldSymbol;
 
