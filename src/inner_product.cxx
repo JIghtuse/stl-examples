@@ -14,6 +14,6 @@ int main()
     std::cout << "Inner product of a and b: " << product << std::endl;
 
     auto hamming_distance = std::inner_product(a.begin(), a.end(), b.begin(), 0,
-                                               std::plus<int>(), std::not_equal_to<int>());
+                                               std::plus<>(), std::not_equal_to<>());
     std::cout << "Hamming distance between a and b: " << hamming_distance << std::endl;
 }

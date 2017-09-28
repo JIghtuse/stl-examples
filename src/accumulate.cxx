@@ -14,7 +14,7 @@ int main()
     auto sqsum = std::accumulate(v.begin(), v.end(), 0, [](const int& a, const int& b) {
         return a + b * b;
     });
-    auto product = std::accumulate(v.begin(), v.end(), 1, std::multiplies<int>());
+    auto product = std::accumulate(v.begin(), v.end(), 1, std::multiplies<>());
 
     print_container(v, "v: ");
     std::cout << "sum of elements:     " << sum << std::endl;

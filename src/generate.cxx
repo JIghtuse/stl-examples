@@ -21,7 +21,7 @@ private:
     size_t b;
 };
 
-int main(void)
+int main()
 {
     auto values = std::array<size_t, 30>();
     std::generate(values.begin(), values.end(), FibGenerator{});

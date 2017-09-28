@@ -8,7 +8,7 @@
 int main()
 {
     std::vector<int> fib(12, 1);
-    std::adjacent_difference(fib.begin(), fib.end() - 1, fib.begin() + 1, std::plus<int>());
+    std::adjacent_difference(fib.begin(), fib.end() - 1, fib.begin() + 1, std::plus<>());
 
     print_container(fib, "Fibonacci sequence: ");
 

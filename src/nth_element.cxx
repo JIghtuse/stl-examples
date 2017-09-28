@@ -16,13 +16,13 @@ int main()
     print_container(v, "after finding median: ");
 
     auto order = 3u;
-    std::nth_element(v.begin(), v.begin() + order, v.end(), std::greater<int>());
+    std::nth_element(v.begin(), v.begin() + order, v.end(), std::greater<>());
     std::cout << "The " << order << " largest element is " << v[order] << std::endl;
 
     print_container(v, "now:                  ");
 
     order = 1u;
-    std::nth_element(v.begin(), v.begin() + order, v.end(), std::greater<int>());
+    std::nth_element(v.begin(), v.begin() + order, v.end(), std::greater<>());
     std::cout << "The " << 1 + order << " largest element is " << v[order] << std::endl;
 
     print_container(v, "finally:              ");

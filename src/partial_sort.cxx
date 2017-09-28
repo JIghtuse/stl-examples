@@ -24,7 +24,7 @@ int main()
     print_container(v, "v initially: ");
 
     const auto n = 3;
-    std::partial_sort(v.begin(), v.begin() + n, v.end(), std::greater<int>());
+    std::partial_sort(v.begin(), v.begin() + n, v.end(), std::greater<>());
 
     std::cout << n << " largest values:  ";
     for (auto it = v.begin(); it != v.begin() + n; ++it) {
@@ -44,6 +44,6 @@ int main()
     print_container(v, "v now:       ");
 
     auto top5 = std::vector<int>(5, 0);
-    std::partial_sort_copy(v.begin(), v.end(), top5.begin(), top5.end(), std::greater<int>());
+    std::partial_sort_copy(v.begin(), v.end(), top5.begin(), top5.end(), std::greater<>());
     print_container(top5, "top5 elements:     ");
 }
