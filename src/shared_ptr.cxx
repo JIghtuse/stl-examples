@@ -8,34 +8,34 @@
 struct Info
 {
     Info(int id, std::string name)
-        : id{id}
-        , name{std::move(name)}
+        : m_id{id}
+        , m_name{std::move(name)}
     {
     }
-    int id;
-    std::string name;
+    int m_id;
+    std::string m_name;
 };
 
 struct Collection
 {
     Collection(std::string name, std::vector<Info> infos)
-        : name{std::move(name)}
-        , infos{std::move(infos)}
+        : m_name{std::move(name)}
+        , m_infos{std::move(infos)}
     {
     }
-    std::string name;
-    std::vector<Info> infos;
+    std::string m_name;
+    std::vector<Info> m_infos;
 };
 
 const std::shared_ptr<Info> get_info(const std::shared_ptr<Collection>& collection, size_t idx)
 {
     // shared_ptr aliased constructor
-    return std::shared_ptr<Info>(collection, &collection->infos[idx]);
+    return std::shared_ptr<Info>(collection, &collection->m_infos[idx]);
 }
 
 std::ostream& operator<<(std::ostream& out, const Info& info)
 {
-    return out << "Info: {" << info.id << ", " << info.name << "}";
+    return out << "Info: {" << info.m_id << ", " << info.m_name << "}";
 }
 
 void show_info(const std::shared_ptr<Info>& i)
