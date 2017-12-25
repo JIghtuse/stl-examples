@@ -84,6 +84,7 @@ add_executable(binary_search src/binary_search.cxx)
 add_executable(merge src/merge.cxx)
 add_executable(stats src/stats.cxx)
 add_executable(shared_ptr src/shared_ptr.cxx)
+target_link_libraries(shared_ptr pthread)
 
 if (BUILD_TESTS)
     enable_testing()
