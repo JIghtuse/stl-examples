@@ -85,6 +85,7 @@ add_executable(merge src/merge.cxx)
 add_executable(stats src/stats.cxx)
 add_executable(shared_ptr src/shared_ptr.cxx)
 target_link_libraries(shared_ptr pthread)
+add_executable(from_to_chars src/from_to_chars.cxx)
 
 if (BUILD_TESTS)
     enable_testing()
