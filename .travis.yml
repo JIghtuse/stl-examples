@@ -14,8 +14,8 @@ matrix:
             - ubuntu-toolchain-r-test
             - boost-latest
           packages:
-            - g++-7
+            - g++-8
             - libboost1.55-dev
             - libboost-filesystem1.55-dev
             - libboost-system1.55-dev
-      env: COMPILER=g++-7
+      env: COMPILER=g++-8
